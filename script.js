@@ -17,30 +17,14 @@ const happyCouple = document.getElementById("happy-couple");
 const backgroundMusic = document.getElementById("background-music");
 const bassSound = document.getElementById("bass-sound");
 const gokuMusic = document.getElementById("goku-music");
-const playButton = document.getElementById("play-button");
 const container = document.querySelector(".container");
 
-// Function to start background music
-function startMusic() {
-    backgroundMusic.play()
-        .then(() => {
-            console.log("Background music started!");
-            playButton.classList.add("hidden"); // Hide the play button
-        })
-        .catch((error) => {
-            console.log("Autoplay blocked. User interaction required.");
-            playButton.classList.remove("hidden"); // Show the play button
-        });
-}
-
-// Try to play background music when the page loads
+// Play background music when the page loads
 window.addEventListener("load", () => {
-    startMusic();
-});
-
-// Play button click event
-playButton.addEventListener("click", () => {
-    startMusic();
+    backgroundMusic.play().catch(() => {
+        // Autoplay was blocked, handle it here (e.g., show a play button)
+        console.log("Autoplay blocked. Please interact with the page to play music.");
+    });
 });
 
 // Function to update the question and image
